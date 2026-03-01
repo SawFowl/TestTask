@@ -1,0 +1,62 @@
+plugins {
+	id("java")
+	id("eclipse")
+	id("org.springframework.boot") version "3.5.11"
+	id("io.spring.dependency-management") version "1.1.7"
+}
+
+group = 'sawfowl.testtask'
+version = "${major}.${minor}.${patch}"
+description = 'Выполнение тестового задания.'
+
+java {
+	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+	mavenCentral()
+	// Добавил для себя на будущее.
+	maven {
+		name = "Sponge"
+		url = "https://repo.spongepowered.org/repository/maven-public"
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'org.liquibase:liquibase-core'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation "com.zaxxer:HikariCP:${hikaricp}"
+
+	// Добавил для себя на будущее.
+	implementation "org.spongepowered:configurate-core:${configurate}"
+	implementation "org.spongepowered:configurate-gson:${configurate}"
+	implementation "org.spongepowered:configurate-hocon:${configurate}"
+	implementation "org.spongepowered:configurate-jackson:${configurate}"
+	implementation "org.spongepowered:configurate-xml:${configurate}"
+	implementation "org.spongepowered:configurate-yaml:${configurate}"
+	implementation "org.spongepowered:configurate-extra-dfu2:${configurate}"
+	implementation "org.spongepowered:configurate-extra-dfu3:${configurate}"
+	implementation "org.spongepowered:configurate-extra-dfu4:${configurate}"
+	implementation "org.spongepowered:configurate-extra-guice:${configurate}"
+	implementation "org.spongepowered:configurate-extra-kotlin:${configurate}"
+	implementation "io.leangen.geantyref:geantyref:${geantyref}"
+	implementation "com.fasterxml.jackson.core:jackson-core:${jackson}"
+	implementation "jakarta.inject:jakarta.inject-api:${jakarta}"
+	implementation "aopalliance:aopalliance:${aopalliance}"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
